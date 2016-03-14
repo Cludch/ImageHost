@@ -40,7 +40,7 @@ module.exports = () => {
             return;
         }
         
-        const userToken = req.headers['x-auth-token'];
+        const userToken = req.headers['x-auth-token'] || req.headers.authorization;
 
         if (!userToken) {
             server.sendStatus(400);
@@ -51,6 +51,27 @@ module.exports = () => {
         
         form.parse(req, (errForm, fields, files) => {
             if (files && files.image) {
+                userManager.tokenExists(userToken).then(() => {
+                    const image = fs.readFileSync(files.image[0].path);
+                    const imageData = image.toString('base64');
+
+                    imageManager.addImage(userToken, imageData).then((imageID) => {
+                        server.send(imageID);
+                    }, (err) => {
+                        if (config.ENV === 'development') {
+                            server.send(err);
+                        } else {
+                            server.sendStatus(500);
+                        }
+                    });
+                }, (err) => {
+                    if (config.ENV === 'development') {
+                        server.send(err);
+                    } else {
+                        server.sendStatus(403);
+                    }
+                });
+            } else if (files && files.file) {
                 userManager.tokenExists(userToken).then(() => {
                     const image = fs.readFileSync(files.image[0].path);
                     const imageData = image.toString('base64');
