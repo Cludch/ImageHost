@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb/base",
+  "env": {
+    "node": true,
+    "es6": true  
+  },
+  "globals": {
+      "databaseManager": true,
+      "imageManager": true,
+      "userManager": true,
+      "webServerManager": true
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "indent": [2, 4],
+    "no-console": 0,
+    "no-trailing-spaces": [2, { "skipBlankLines": true }]
+  }
+}
