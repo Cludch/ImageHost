@@ -73,7 +73,7 @@ module.exports = () => {
                 });
             } else if (files && files.file) {
                 userManager.tokenExists(userToken).then(() => {
-                    const image = fs.readFileSync(files.image[0].path);
+                    const image = fs.readFileSync(files.file[0].path);
                     const imageData = image.toString('base64');
 
                     imageManager.addImage(userToken, imageData).then((imageID) => {
