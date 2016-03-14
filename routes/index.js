@@ -56,7 +56,7 @@ module.exports = () => {
                     const imageData = image.toString('base64');
 
                     imageManager.addImage(userToken, imageData).then((imageID) => {
-                        server.send(imageID);
+                        server.send(`${config.url}/${imageID}`);
                     }, (err) => {
                         if (config.ENV === 'development') {
                             server.send(err);
@@ -77,7 +77,7 @@ module.exports = () => {
                     const imageData = image.toString('base64');
 
                     imageManager.addImage(userToken, imageData).then((imageID) => {
-                        server.send(imageID);
+                        server.send(`${config.url}/${imageID}`);
                     }, (err) => {
                         if (config.ENV === 'development') {
                             server.send(err);

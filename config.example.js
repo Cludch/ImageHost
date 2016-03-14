@@ -13,6 +13,7 @@
 
 module.exports = {
     env: process.env.NODE_ENV || 'production',
+    url: process.env.URL || 'https://i.cludch.me',
     webPort: process.env.WEB_PORT || 4040,
     mongo: {
         ip: process.env.MONGO_IP || '127.0.0.1',
