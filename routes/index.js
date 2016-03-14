@@ -40,7 +40,7 @@ module.exports = () => {
             return;
         }
         
-        const userToken = req.headers['x-auth-token'] || req.headers.authorization;
+        const userToken = req.headers.authorization;
 
         if (!userToken) {
             server.sendStatus(400);
