@@ -1,0 +1,10 @@
+﻿{
+  "Name": "https://i.cludch.me",
+  "RequestType": "POST",
+  "RequestURL": "https://i.cludch.me",
+  "FileFormName": "file",
+  "Headers": {
+    "Authorization": "YOURTOKEN"
+  },
+  "ResponseType": "Text"
+}
