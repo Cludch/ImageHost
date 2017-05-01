@@ -9,6 +9,7 @@
 
 const config = require('../config');
 const mongoose = require('mongoose');
+const ttl = require('mongoose-ttl');
 
 /**
  * Registers the image schema
@@ -19,11 +20,11 @@ module.exports = () => {
         ID: { type: String, required: true, index: { unique: true } },
         Content: { type: String, required: true },
         UserToken: { type: String, required: true },
-        Timestamp: { type: Number, default: Math.floor(Date.now() / 1000) },
-        createdAt: { type: Date, expires: config.expiresAt, default: Date.now }
+        CreatedAt: { type: Number, default: + new Date() }
     };
 
     const imageSchema = new mongoose.Schema(imageSchemaArray);
+    schema.plugin(ttl, { ttl: config.expiresAt });
 
     databaseManager.addSchema('Image', imageSchema);
 };
