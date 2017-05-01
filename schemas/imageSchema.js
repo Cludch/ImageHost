@@ -24,7 +24,7 @@ module.exports = () => {
     };
 
     const imageSchema = new mongoose.Schema(imageSchemaArray);
-    schema.plugin(ttl, { ttl: config.expiresAt });
+    imageSchema.plugin(ttl, { ttl: config.expiresAt });
 
     databaseManager.addSchema('Image', imageSchema);
 };
