@@ -19,6 +19,7 @@ module.exports = () => {
         Content: { type: String, required: true },
         UserToken: { type: String, required: true },
         Timestamp: { type: Number, default: Math.floor(Date.now() / 1000) },
+        createdAt: { type: Date, expires: 7*24*60*60, default: Date.now },
     };
 
     const imageSchema = new mongoose.Schema(imageSchemaArray);
